@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Form</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .form-container {
+            width: 300px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            text-align: left;
+        }
+
+        .text-warning {
+            color: red;
+        }
+    </style>
+    <script>
+        function validateInput(id, errorMsg) {
+            const input = document.getElementById(id);
+            const message = document.getElementById(`${id}-msg`);
+            if (input.value.trim() === "") {
+                input.style.border = "3px solid red";
+                message.innerHTML = errorMsg;
+                return false;
+            } else {
+                input.style.border = "";
+                message.innerHTML = "";
+                return true;
+            }
+        }
+
+        function onSubmit() {
+            const isNameValid = validateInput("name", "This field is required");
+            const isEmailValid = validateInput("email", "A valid email address is required");
+            const isWebsiteValid = validateInput("website", "A valid URL is required");
+            const isMessageValid = validateInput("message", "This field is required");
+
+            return isNameValid && isEmailValid && isWebsiteValid && isMessageValid;
+        }
+    </script>
+</head>
+<body>
+    <div class="form-container">
+        <form onsubmit="return onSubmit()">
+            <table>
+                <tr>
+                    <td>Name:</td>
+                    <td>
+                        <input type="text" id="name" onkeyup="validateInput('name', 'This field is required')" />
+                    </td>
+                    <td class="text-warning" id="name-msg"></td>
+                </tr>
+                <tr>
+                    <td>Email:</td>
+                    <td>
+                        <input type="text" id="email" onkeyup="validateInput('email', 'A valid email address is required')" />
+                    </td>
+                    <td class="text-warning" id="email-msg"></td>
+                </tr>
+                <tr>
+                    <td>Website:</td>
+                    <td>
+                        <input type="text" id="website" onkeyup="validateInput('website', 'A valid URL is required')" />
+                    </td>
+                    <td class="text-warning" id="website-msg"></td>
+                </tr>
+                <tr>
+                    <td>Message:</td>
+                    <td>
+                        <textarea id="message" onkeyup="validateInput('message', 'This field is required')"></textarea>
+                    </td>
+                    <td class="text-warning" id="message-msg"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <button type="submit">Submit</button>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</body>
+</html>

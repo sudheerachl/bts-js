@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS1</title>
+</head>
+<body>
+    <label for="num">Example x=</label>
+    <input type="number" id="num" onchange="reverse()">
+    <p id="answer">Expected Output: </p>
+
+    <script>
+        function reverse() {
+            const num = document.getElementById("num").value;
+            const reversedNum = parseFloat(num.toString().split('').reverse().join(''));
+            document.getElementById("answer").textContent = `Expected Output: ${reversedNum}`;
+        }
+    </script>
+</body>
+</html>

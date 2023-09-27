@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Image Mover</title>
+    <style>
+        #myimg {
+            position: relative;
+            left: 0px; 
+        }
+        
+        /* Style the dark blue paragraph */
+        p {
+            color: #00008B;
+        }
+    </style>
+</head>
+
+<body>
+    <center>
+        <img id="myimg" src="https://www.javatpoint.com/oprweb/train1.png" alt="Train Image">
+        <p>Click the following buttons to handle animation.</p>
+        <button id="startButton" onclick="startMoving();">Start</button>
+        <button id="stopButton" onclick="stopMoving();">Stop</button>
+    </center>
+
+    <script>
+        var img = null;
+        var movingInterval = null;
+        var speed = 5; 
+
+        function init() {
+            img = document.getElementById('myimg');
+            img.style.position = 'relative';
+            img.style.left = '0px'; // Start from the left edge
+        }
+
+        function startMoving() {
+            if (movingInterval === null) {
+                movingInterval = setInterval(moveRight, speed);
+            }
+        }
+
+        function stopMoving() {
+            clearInterval(movingInterval);
+            movingInterval = null;
+        }
+
+        function moveRight() {
+            var currentLeft = parseInt(img.style.left);
+            var pageWidth = window.innerWidth;
+
+            if (currentLeft >= pageWidth - img.width) {
+                img.style.left = '0px'; // Reset to the left edge
+            } else {
+                img.style.left = currentLeft + 1 + 'px';
+            }
+        }
+
+        window.onload = init;
+    </script>
+</body>
+
+</html>

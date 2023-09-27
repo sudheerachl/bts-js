@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Task5</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .bg-light-grey {
+            background-color: rgb(240, 240, 240);
+        }
+    </style>
+    <script>
+        function validateField(fieldId, iconId) {
+            const field = document.getElementById(fieldId);
+            const icon = document.getElementById(iconId);
+            if (field.value.trim() === "") {
+                field.classList.add("is-invalid");
+                icon.classList.add("text-danger");
+                return false;
+            } else {
+                field.classList.remove("is-invalid");
+                icon.classList.remove("text-danger");
+                return true;
+            }
+        }
+
+        function validateState() {
+            const state = document.getElementById("state");
+            const stateIcon = document.getElementById("state-icon");
+            if (state.value === "nil") {
+                state.classList.add("is-invalid");
+                stateIcon.classList.add("text-danger");
+                return false;
+            } else {
+                state.classList.remove("is-invalid");
+                stateIcon.classList.remove("text-danger");
+                return true;
+            }
+        }
+
+        function validateHoisting() {
+            const hoistingYes = document.getElementById("hyes");
+            const hoistingNo = document.getElementById("hno");
+            const hoistingMessage = document.getElementById("hoisting-message");
+            if (!hoistingYes.checked && !hoistingNo.checked) {
+                hoistingMessage.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-circle text-danger mx-2" viewBox="0 0 16 16">
+  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+  <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z"/>
+</svg>Please select an option`;
+                hoistingMessage.classList.add("alert-danger");
+                return false;
+            } else {
+                hoistingMessage.innerHTML = "";
+                hoistingMessage.classList.remove("alert-danger");
+                return true;
+            }
+        }
+
+        function validateForm() {
+            const validations = [
+                validateField("fname", "fname-icon"),
+                validateField("lname", "lname-icon"),
+                validateField("email", "email-icon"),
+                validateField("phone", "phone-icon"),
+                validateField("address", "address-icon"),
+                validateField("city", "city-icon"),
+                validateState(),
+                validateHoisting(),
+                validateField("project", "project-icon")
+            ];
+
+            return validations.every((validation) => validation);
+        }
+    </script>
+</head>
+<body class="bg-light-grey">
+<div class="p-5 mx-auto" style="max-width: 900px">
+    <form onsubmit="return validateForm()">
+        <div class="row">
+            <div class="col-12 col-md-6 text-end fw-bold py-4 px-3" id="firstname">
+                First Name
+            </div>
+            <div class="col-12 col-md-6 p-3">
+                <div class="input-group">
+                    <span class="input-group-text">
+                        <svg id="fname-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                            fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+                            <path
+                                d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3Zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" />
+                        </svg>
+                    </span>
+                    <input type="text" class="form-control" id="fname" placeholder="First Name" onkeyup="validateField('fname', 'fname-icon')">
+                    <div class="invalid-feedback">Please supply your first name</div>
+                </div>
+            </div>
+        </div>
+         <div class="row">
+          <div class="col-12 col-md-6 text-end fw-bold py-4 px-3" id="lastname">
+            Last Name
+          </div>
+          <div class="col-12 col-md-6 p-3">
+            <div class="input-group">
+              <span class="input-group-text">
+                <svg
+                  id="lname-icon"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  fill="currentColor"
+                  class="bi bi-person-fill"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3Zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"
+                  />
+                </svg>
+              </span>
+              <input
+                type="text"
+                class="form-control"
+                id="lname"
+                placeholder="Last Name"
+                onkeyup="lastName()"
+              />
+              <div class="invalid-feedback">Please supply your last name</div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12 col-md-6 text-end fw-bold py-4 px-3" id="mail">
+            E-Mail
+          </div>
+          <div class="col-12 col-md-6 p-3">
+            <div class="input-group">
+              <span class="input-group-text">
+                <svg
+                  id="email-icon"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  fill="currentColor"
+                  class="bi bi-envelope-fill"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555ZM0 4.697v7.104l5.803-3.558L0 4.697ZM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757Zm3.436-.586L16 11.801V4.697l-5.803 3.546Z"
+                  />
+                </svg>
+              </span>
+              <input
+                type="text"
+                class="form-control"
+                id="email"
+                placeholder="E-Mail Address"
+                onkeyup="eMail()"
+              />
+              <div class="invalid-feedback">
+                Please supply your email address
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12 col-md-6 text-end fw-bold py-4 px-3" id="mobile">
+            Phone #
+          </div>
+          <div class="col-12 col-md-6 p-3">
+            <div class="input-group">
+              <span class="input-group-text">
+                <svg
+                  id="phone-icon"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  fill="currentColor"
+                  class="bi bi-telephone-fill"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z"
+                  />
+                </svg>
+              </span>
+              <input
+                type="text"
+                class="form-control"
+                id="phone"
+                placeholder="(845)555-1212"
+                onkeyup="phoneNumber()"
+              />
+              <div class="invalid-feedback">
+                Please supply your phone number
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12 col-md-6 text-end fw-bold py-4 px-3" id="addr">
+            Address
+          </div>
+          <div class="col-12 col-md-6 p-3">
+            <div class="input-group">
+              <span class="input-group-text">
+                <svg
+                  id="address-icon"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  fill="currentColor"
+                  class="bi bi-house-fill"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L8 2.207l6.646 6.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.707 1.5Z"
+                  />
+                  <path
+                    d="m8 3.293 6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293l6-6Z"
+                  />
+                </svg>
+              </span>
+              <input
+                type="text"
+                class="form-control"
+                id="address"
+                placeholder="Address"
+                onkeyup="addressInfo()"
+              />
+              <div class="invalid-feedback">
+                Please supply your street address
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12 col-md-6 text-end fw-bold py-4 px-3" id="mycity">
+            City
+          </div>
+          <div class="col-12 col-md-6 p-3">
+            <div class="input-group">
+              <span class="input-group-text">
+                <svg
+                  id="city-icon"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  fill="currentColor"
+                  class="bi bi-house-fill"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L8 2.207l6.646 6.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.707 1.5Z"
+                  />
+                  <path
+                    d="m8 3.293 6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293l6-6Z"
+                  />
+                </svg>
+              </span>
+              <input
+                type="text"
+                class="form-control"
+                id="city"
+                placeholder="City"
+                onkeyup="cityInfo()"
+              />
+              <div class="invalid-feedback">Please supply your city</div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12 col-md-6 text-end fw-bold py-4 px-3" id="mystate">
+            State
+          </div>
+          <div class="col-12 col-md-6 p-3">
+            <div class="input-group">
+              <span class="input-group-text">
+                <svg
+                  id="state-icon"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  fill="currentColor"
+                  class="bi bi-list-task"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M2 2.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5V3a.5.5 0 0 0-.5-.5H2zM3 3H2v1h1V3z"
+                  />
+                  <path
+                    d="M5 3.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zM5.5 7a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1h-9zm0 4a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1h-9z"
+                  />
+                  <path
+                    fill-rule="evenodd"
+                    d="M1.5 7a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H2a.5.5 0 0 1-.5-.5V7zM2 7h1v1H2V7zm0 3.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5H2zm1 .5H2v1h1v-1z"
+                  />
+                </svg>
+              </span>
+              <select
+                class="form-select text-secondary"
+                id="state"
+                onchange="stateInfo()"
+              >
+                <option selected value="nil">Please select your state</option>
+                <option value="Andhra pradesh">Andhra Pradesh</option>
+                <option value="Tamil Nadu">Tamil Nadu</option>
+                <option value="Delhi">Delhi</option>
+              </select>
+              <div class="invalid-feedback">Please supply your state</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="row justify-content-center align-items-center">
+            <div class="col-12 col-md-6 text-end fw-bold p-3" id="hoisting">
+                Do you have hosting?
+            </div>
+            <div class="col-12 col-md-6 px-5 py-3 form-check">
+                <input type="radio" class="form-check-input" name="hosting" value="yes" id="hyes" onclick="validateHoisting()">
+                <label class="form-check-label" for="hyes" id="hoisting-label-1">Yes</label>
+            </div>
+        </div>
+        <div class="row justify-content-center align-items-center">
+            <div class="col-md-6 text-end fw-bold p-3">
+                <div class="alert text-center" id="hoisting-message"></div>
+            </div>
+            <div class="col-12 col-md-6 px-5 py-3 form-check">
+                <input type="radio" class="form-check-input" name="hosting" value="no" id="hno" onclick="validateHoisting()">
+                <label class="form-check-label" for="hno" id="hoisting-label-2">No</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 col-md-6 text-end fw-bold py-4 px-3" id="myproject">
+                Project Description
+            </div>
+            <div class="col-12 col-md-6 p-3">
+                <div class="input-group">
+                    <span class="input-group-text">
+                        <svg id="project-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                            fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16">
+                            <path
+                                d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"
+                            />
+                        </svg>
+                    </span>
+                    <textarea type="text" class="form-control" id="project" placeholder="Project Description" onkeyup="validateField('project', 'project-icon')"></textarea>
+                    <div class="invalid-feedback">Please supply your project description</div>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center align-items-center">
+            <div class="col-12 col-md-6 p-3"></div>
+            <div class="col-12 col-md-6 p-3">
+                <input type="submit" class="btn btn-warning" value="Send" />
+            </div>
+        </div>
+    </form>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+    crossorigin="anonymous"></script>
+</body>
+</html>

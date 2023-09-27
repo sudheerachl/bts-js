@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS2</title>
+</head>
+<body>
+    <label for="string">Example string:</label>
+    <input type="text" id="string" onchange="sort()">
+    <p id="answer">Expected Output: </p>
+
+    <script>
+        function sort() {
+            const inputString = document.getElementById("string").value;
+            const sortedString = inputString.split('').sort().join('');
+            document.getElementById("answer").textContent = `Expected Output: ${sortedString}`;
+        }
+    </script>
+</body>
+</html>

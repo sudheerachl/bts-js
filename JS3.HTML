@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS3</title>
+</head>
+<body>
+    <label for="num1">1st Number:</label>
+    <input type="number" id="num1">
+    <br><br>
+    <label for="num2">2nd Number:</label>
+    <input type="number" id="num2">
+    <br><br>
+    <button onclick="performOperation(multiply)">Multiply</button>
+    <button onclick="performOperation(divide)">Divide</button>
+    <br><br>
+    <p id="answer">No operation performed</p>
+
+    <script>
+        function multiply() {
+            let num1 = parseFloat(document.getElementById("num1").value);
+            let num2 = parseFloat(document.getElementById("num2").value);
+            return num1 * num2;
+        }
+
+        function divide() {
+            let num1 = parseFloat(document.getElementById("num1").value);
+            let num2 = parseFloat(document.getElementById("num2").value);
+            return num1 / num2;
+        }
+
+        function performOperation(operation) {
+            let result = operation();
+            document.getElementById("answer").innerHTML = `The Result Is: <br>${result}`;
+        }
+    </script>
+</body>
+</html>

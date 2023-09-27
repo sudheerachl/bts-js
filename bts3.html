@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Task3</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    /* Custom button styles */
+    .custom-button {
+      background-color: #007BFF;
+      color: #fff;
+      border: 2px solid #007BFF;
+    }
+
+    /* Custom button styles for active state */
+    .custom-button:active {
+      background-color: #fff;
+      color: #007BFF;
+    }
+
+    /* Hover and focus styles */
+    .custom-button:hover,
+    .custom-button:focus {
+      background-color: #fff;
+      color: #007BFF;
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar navbar-expand-md p-3 shadow-sm">
+    <div class="navbar-brand mx-2">Company name</div>
+    <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#demo">
+      <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-list text-primary m-3" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+      </svg>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="demo">
+      <a href="#" class="nav-link">Features</a>
+      <a href="#" class="nav-link">Enterprise</a>
+      <a href="#" class="nav-link">Support</a>
+      <a href="#" class="nav-link">Pricing</a>
+      <a href="#" class="nav-link border border-primary text-primary">Sign up</a>
+    </div>
+  </nav>
+  <div class="d-flex flex-column m-5 justify-content-center align-items-center">
+    <h1 class="text-center">Pricing</h1>
+    <p class="text-center" style="max-width: 600px">
+      Quickly build an effective pricing table for your potential customers with this Bootstrap example. It's built with default Bootstrap components and utilities with little customization.
+    </p>
+    <div class="d-flex flex-wrap justify-content-center" style="max-width: 950px">
+      <div class="card m-2">
+        <div class="card-header bg-light-grey text-center">
+          <h2 class="m-0">Free</h2>
+        </div>
+        <div class="card-body text-center">
+          <h1 class="display-4">$0 <span class="text-secondary">/ mo</span></h1>
+          <p class="text-small">10 users included</p>
+          <p class="text-small">2 GB of storage</p>
+          <p class="text-small">Email support</p>
+          <p class="text-small">Help center access</p>
+          <button class="btn custom-button px-5 mt-2">Sign up for free</button>
+        </div>
+      </div>
+      <div class="card m-2">
+        <div class="card-header bg-light-grey text-center">
+          <h2 class="m-0">Pro</h2>
+        </div>
+        <div class="card-body text-center">
+          <h1 class="display-4">$15 <span class="text-secondary">/ mo</span></h1>
+          <p class="text-small">20 users included</p>
+          <p class="text-small">10 GB of storage</p>
+          <p class="text-small">Priority email support</p>
+          <p class="text-small">Help center access</p>
+          <button class="btn custom-button px-5 mt-2">Get started</button>
+        </div>
+      </div>
+      <div class="card m-2">
+        <div class="card-header bg-light-grey text-center">
+          <h2 class="m-0">Enterprise</h2>
+        </div>
+        <div class="card-body text-center">
+          <h1 class="display-4">$29 <span class="text-secondary">/ mo</span></h1>
+          <p class="text-small">30 users included</p>
+          <p class="text-small">15 GB of storage</p>
+          <p class="text-small">Phone and email support</p>
+          <p class="text-small">Help center access</p>
+          <button class="btn custom-button px-5 mt-2">Contact us</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- JavaScript to prevent default button behavior -->
+  <script>
+    const buttons = document.querySelectorAll('.custom-button');
+
+    buttons.forEach(button => {
+      button.addEventListener('click', event => {
+        event.preventDefault();
+      });
+    });
+  </script>
+</body>
+</html>
